@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: themeMain,
       initialRoute: '/',
       routes: {
-        '/': (context) => const GetStarted(),
+        '/': (context) => GetStarted(),
         '/home': (context) => MyHomePage(),
       },
     );

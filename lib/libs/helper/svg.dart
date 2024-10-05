@@ -94,4 +94,32 @@ class AppSVG {
       color: color ?? ColorMain.white,
     );
   }
+
+  static Widget voteStar(
+      {double width = 12, double height = 12, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}VoteStar.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.white,
+    );
+  }
+
+  static Widget search({double width = 20, double height = 20, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Search.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.white,
+    );
+  }
+
+  static Widget group({double width = 20, double height = 20, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Group.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.white,
+    );
+  }
 }
