@@ -1,55 +1,97 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/libs/util/themes/color.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppSVG {
-  static const String _basePath = 'assets/icons/system/';
+  static const String _baseOutlineIconPath = 'lib/assets/icons/outline/system/';
 
-  static Widget home({
+  static Widget homeOutline({
     double width = 24,
     double height = 24,
     Color? color,
   }) {
     return SvgPicture.asset(
-      '${_basePath}Home.svg',
+      '${_baseOutlineIconPath}HomeOutline.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.fourth.shade900,
+    );
+  }
+
+  static Widget home({double width = 24, double height = 24, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Home.svg',
       width: width,
       height: height,
       color: color,
     );
   }
-  static Widget heart({
-    double width = 24,
-    double height = 24,
-    Color? color,
-  }) {
+
+  static Widget heart({double width = 24, double height = 24, Color? color}) {
     return SvgPicture.asset(
-      '${_basePath}Heart.svg',
+      '${_baseOutlineIconPath}Heart.svg',
       width: width,
       height: height,
       color: color,
     );
   }
-  static Widget bag({
-    double width = 24,
-    double height = 24,
-    Color? color,
-  }) {
+
+  static Widget heartOutline(
+      {double width = 24, double height = 24, Color? color}) {
     return SvgPicture.asset(
-      '${_basePath}Bag.svg',
+      '${_baseOutlineIconPath}HeartOutline.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.fourth.shade900,
+    );
+  }
+
+  static Widget bag({double width = 24, double height = 24, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Bag.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.fourth.shade900,
+    );
+  }
+
+  static Widget bagOutline(
+      {double width = 24, double height = 24, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}BagOutline.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.fourth.shade900,
+    );
+  }
+
+  static Widget notification(
+      {double width = 24, double height = 24, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Notification.svg',
       width: width,
       height: height,
       color: color,
     );
   }
-  static Widget notification({
-    double width = 24,
-    double height = 24,
-    Color? color,
-  }) {
+
+  static Widget notificationOutline(
+      {double width = 24, double height = 24, Color? color}) {
     return SvgPicture.asset(
-      '${_basePath}Notification.svg',
+      '${_baseOutlineIconPath}NotificationOutline.svg',
       width: width,
       height: height,
-      color: color,
+      color: color ?? ColorMain.fourth.shade900,
+    );
+  }
+
+  static Widget plusCircle(
+      {double width = 16, double height = 16, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}pluscircle.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.white,
     );
   }
 }

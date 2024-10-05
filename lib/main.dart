@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/layout/bottom_navigation.dart';
+import 'package:flutter_application_1/layout/screen.dart';
 import 'package:flutter_application_1/libs/util/themes/index.dart';
+import 'package:flutter_application_1/screens/get_started.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,8 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
       theme: themeMain,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const GetStarted(),
+        '/home': (context) => MyHomePage(),
+      },
     );
   }
 }
@@ -20,13 +27,14 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this, initialIndex: 0);
   }
 
   @override
@@ -35,29 +43,21 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     super.dispose();
   }
 
+  void setIndexState(index) {
+    setState(() {
+      _tabController.index = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _tabController.index,
-        onTap: (index) {
-          setState(() {
-            _tabController.index = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.business), label: 'Business'),
-          BottomNavigationBarItem(icon: Icon(Icons.school), label: 'School'),
-        ],
+      bottomNavigationBar: BottomNavigation(
+        tabController: _tabController,
+        setIndexState: setIndexState,
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: const [
-          Icon(Icons.home),
-          Icon(Icons.business),
-          Icon(Icons.school),
-        ],
+      body: Screen(
+        tabController: _tabController,
       ),
     );
   }

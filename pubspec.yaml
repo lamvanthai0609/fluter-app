@@ -91,4 +91,17 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
-    - lib/assets/icons/system/
+    - lib/assets/icons/outline/system/
+    - lib/assets/images/
+  fonts:
+    - family: Sora
+      fonts:
+        - asset: lib/assets/fonts/Sora/static/Sora-Regular.ttf
+        - asset: lib/assets/fonts/Sora/static/Sora-Light.ttf
+          weight: 300
+        - asset: lib/assets/fonts/Sora/static/Sora-Medium.ttf
+          weight: 500
+        - asset: lib/assets/fonts/Sora/static/Sora-SemiBold.ttf
+          weight: 600
+        - asset: lib/assets/fonts/Sora/static/Sora-Bold.ttf
+          weight: 700

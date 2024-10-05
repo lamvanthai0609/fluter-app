@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-
 class ColorMain {
   static const MaterialColor primary = MaterialColor(
-    0xFFC67C4E, 
+    0xFFC67C4E,
     <int, Color>{
       50: Color(0xFFFFE9DE),
       100: Color(0xFFFFD0BC),
@@ -81,5 +80,20 @@ class ColorMain {
       900: Color(0xFFC2B3B1),
     },
   );
-}
 
+  static const MaterialColor white = MaterialColor(
+    0xFFFFFFFF,
+    <int, Color>{
+      50: Color(0xFFFFFFFF),
+      100: Color(0xFFFFFFFF),
+      200: Color(0xFFFFFFFF),
+      300: Color(0xFFFFFFFF),
+      400: Color(0xFFFFFFFF),
+      500: Color(0xFFFFFFFF), // main
+      600: Color(0xFFF2F2F2),
+      700: Color(0xFFE6E6E6),
+      800: Color(0xFFD9D9D9),
+      900: Color(0xFFCCCCCC),
+    },
+  );
+}

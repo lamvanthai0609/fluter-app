@@ -1,38 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/components/share/product_card.dart';
+import 'package:flutter_application_1/libs/mocks/Cards.dart';
 
 class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
 
-  const MainScreen({required this.title, super.key});
-
-  final Widget title;
-
-   void onPress(){
-    print("123");
-  }
+  void test() {}
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Container(
-      height: 56,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        children: [
-          IconButton(
-            icon: Icon(Icons.menu),
-            tooltip: 'Navigation menu',
-            onPressed: onPress,
-          ),
-          Expanded(
-            child: title,
-          ),
-          const IconButton(
-            icon: Icon(Icons.search),
-            tooltip: 'Search',
-            onPressed: null,
-          ),
-        ],
-      ),
+      child: SingleChildScrollView(
+          padding: const EdgeInsets.all(8),
+          child: Container(
+              child: Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: productMockData.map((product) {
+                    return ProductCard(product: product);
+                  }).toList()))),
     );
   }
- 
 }
