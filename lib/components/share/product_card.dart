@@ -89,6 +89,7 @@ class ProductCard extends StatelessWidget {
                 height: 32,
                 padding: const EdgeInsets.all(0),
                 child: AppSVG.plusCircle(),
+                onPressed: () => Navigator.pushNamed(context, '/detail'),
               )
             ],
           ),

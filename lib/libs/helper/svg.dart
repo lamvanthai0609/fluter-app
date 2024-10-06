@@ -122,4 +122,24 @@ class AppSVG {
       color: color ?? ColorMain.white,
     );
   }
+
+  static Widget arrowLeft(
+      {double width = 20, double height = 20, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Arrow_Left.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.third,
+    );
+  }
+
+  static Widget motorbike(
+      {double width = 20, double height = 20, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Motorbike.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.primary,
+    );
+  }
 }

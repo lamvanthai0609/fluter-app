@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/libs/helper/svg.dart';
-import 'package:flutter_application_1/screens/Home.dart';
+import 'package:flutter_application_1/screens/home/Home.dart';
 
 class Screen extends StatelessWidget {
   final TabController tabController;

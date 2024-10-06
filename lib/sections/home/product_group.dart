@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/interactive/button.dart';
 import 'package:flutter_application_1/libs/util/themes/color.dart';
+import 'package:flutter_application_1/components/share/product_card.dart';
+import 'package:flutter_application_1/libs/mocks/Cards.dart';
 
 class ProductGroup extends StatefulWidget {
   @override
@@ -39,7 +41,14 @@ class _ProductGroup extends State<ProductGroup> {
                 tab("Americano", 3)
               ],
             ),
-          )
+          ),
+          Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 8,
+              runSpacing: 8,
+              children: productMockData.map((product) {
+                return ProductCard(product: product);
+              }).toList()),
         ],
       ),
     );

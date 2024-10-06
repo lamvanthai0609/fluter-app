@@ -4,8 +4,8 @@ import 'package:flutter_application_1/libs/util/themes/typography.dart';
 
 ThemeData themeMain = ThemeData(
     primaryColor: ColorMain.primary,
-    textTheme: textTheme,
     fontFamily: 'Sora',
+    textTheme: textTheme,
     scaffoldBackgroundColor: ColorMain.fourth[100],
     colorScheme: const ColorScheme(
       primary: ColorMain.primary,
