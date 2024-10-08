@@ -1,23 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/static.dart';
+import 'package:flutter_application_1/components/interactive/button.dart';
 import 'package:flutter_application_1/libs/helper/svg.dart';
+import 'package:flutter_application_1/libs/helper/variant.dart';
 import 'package:flutter_application_1/libs/util/themes/color.dart';
+import 'package:flutter_application_1/sections/detail/description.dart';
 
-class DetailPage extends StatelessWidget {
-  const DetailPage({super.key});
+class DetailPage extends StatefulWidget {
+  @override
+  _DetailPage createState() => _DetailPage();
+}
+
+class _DetailPage extends State<DetailPage> {
+  String activeSize = 's';
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: ColorMain.white,
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        children: [
-          const SizedBox(height: 20),
-          header(context),
-          const SizedBox(height: 24),
-          content()
-        ],
+    return Scaffold(
+      body: Container(
+        color: const Color(0xFFF9F9F9),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              header(context),
+              const SizedBox(height: 24),
+              content(),
+              const SizedBox(height: 24),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+        child: BottomAppBar(
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Price',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: ColorMain.third[100]),
+                  ),
+                  const Text(
+                    '\$ 4.53',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: ColorMain.primary),
+                  ),
+                ],
+              ),
+              Button(
+                borderRadius: BorderRadius.circular(16),
+                width: 217,
+                child: const Text(
+                  'Buy Now',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600, color: ColorMain.white),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -31,11 +87,9 @@ class DetailPage extends StatelessWidget {
         const Text(
           'Detail',
           style: TextStyle(
-              fontFamily: 'Sora',
-              decoration: TextDecoration.none,
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: ColorMain.third),
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         AppSVG.heartOutline(color: ColorMain.third)
       ],
@@ -43,8 +97,7 @@ class DetailPage extends StatelessWidget {
   }
 
   Widget content() {
-    return Expanded(
-        child: Column(
+    return Column(
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(12.0),
@@ -52,29 +105,186 @@ class DetailPage extends StatelessWidget {
               Image.asset(imageAsset('product_detail.png'), fit: BoxFit.cover),
         ),
         const SizedBox(height: 16),
-        Row(
+        infoAction(),
+        const SizedBox(height: 16),
+        Divider(color: ColorMain.fourth[100]),
+        const SizedBox(height: 16),
+        description(),
+        const SizedBox(height: 24),
+        size()
+      ],
+    );
+  }
+
+  Widget infoAction() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Column(
-              children: [
-                Text('Caffe Mocha',
-                    style: TextStyle(
-                        fontSize: 20,
-                        decoration: TextDecoration.none,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Sora',
-                        color: ColorMain.third))
-              ],
-            ),
+            const Text('Caffe Mocha',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                )),
+            Text('Ice/Hot',
+                style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: ColorMain.third[100])),
+            const SizedBox(height: 16),
             Row(
               children: [
-                Container(
-                  child: AppSVG.motorbike(),
-                ),
+                AppSVG.voteStar(
+                    height: 20, width: 20, color: const Color(0xFFFBBE21)),
+                const SizedBox(width: 4),
+                const Text('4.8',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    )),
+                const SizedBox(width: 4),
+                Text('(230)',
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: ColorMain.third[100])),
               ],
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Button(
+              bgColor: ColorMain.fourth[100],
+              width: 50,
+              height: 50,
+              padding: const EdgeInsets.all(12),
+              child: SizedBox(child: Image.asset(imageAsset('motorbike.png'))),
+              onPressed: () => {},
+            ),
+            const SizedBox(width: 12),
+            Button(
+              bgColor: ColorMain.fourth[100],
+              width: 50,
+              height: 50,
+              padding: const EdgeInsets.all(12),
+              child: SizedBox(child: Image.asset(imageAsset('caffe_bean.png'))),
+              onPressed: () => {},
+            ),
+            const SizedBox(width: 12),
+            Button(
+              bgColor: ColorMain.fourth[100],
+              width: 50,
+              height: 50,
+              padding: const EdgeInsets.all(12),
+              child: SizedBox(child: Image.asset(imageAsset('milk.png'))),
+              onPressed: () => {},
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget description() {
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("Description", style: TextStyle(fontWeight: FontWeight.w600)),
+        SizedBox(height: 8),
+        Description(
+          text:
+              "A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml of espresso coffee and 85ml of fresh milk the",
+          trimLength: 100,
+        )
+      ],
+    );
+  }
+
+  Widget size() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text("Size", style: TextStyle(fontWeight: FontWeight.w600)),
+        const SizedBox(height: 8),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Button(
+              width: 96,
+              height: 41,
+              padding: const EdgeInsets.all(0),
+              variant: ButtonVariant.outline,
+              borderRadius: BorderRadius.circular(12),
+              borderColor:
+                  activeSize == 's' ? ColorMain.primary : ColorMain.fourth,
+              bgColor: activeSize == 's'
+                  ? ColorMain.primary[600]?.withOpacity(0.1)
+                  : ColorMain.white,
+              child: Text(
+                'S',
+                style: TextStyle(
+                    color: activeSize == 's'
+                        ? ColorMain.primary
+                        : ColorMain.third),
+              ),
+              onPressed: () => setState(() {
+                activeSize = 's';
+              }),
+            ),
+            Button(
+              width: 96,
+              height: 41,
+              padding: const EdgeInsets.all(0),
+              variant: ButtonVariant.outline,
+              borderRadius: BorderRadius.circular(12),
+              borderColor:
+                  activeSize == 'm' ? ColorMain.primary : ColorMain.fourth,
+              bgColor: activeSize == 'm'
+                  ? ColorMain.primary[600]?.withOpacity(0.1)
+                  : ColorMain.white,
+              child: Text(
+                'M',
+                style: TextStyle(
+                    color: activeSize == 'm'
+                        ? ColorMain.primary
+                        : ColorMain.third),
+              ),
+              onPressed: () => setState(() {
+                activeSize = 'm';
+              }),
+            ),
+            Button(
+              width: 96,
+              height: 41,
+              padding: const EdgeInsets.all(0),
+              variant: ButtonVariant.outline,
+              borderRadius: BorderRadius.circular(12),
+              borderColor:
+                  activeSize == 'l' ? ColorMain.primary : ColorMain.fourth,
+              bgColor: activeSize == 'l'
+                  ? ColorMain.primary[600]?.withOpacity(0.1)
+                  : ColorMain.white,
+              child: Text(
+                'L',
+                style: TextStyle(
+                    color: activeSize == 'l'
+                        ? ColorMain.primary
+                        : ColorMain.third),
+              ),
+              onPressed: () {
+                setState(() {
+                  activeSize = 'l';
+                });
+              },
             )
           ],
         )
       ],
-    ));
+    );
   }
 }

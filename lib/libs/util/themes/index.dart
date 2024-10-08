@@ -6,7 +6,7 @@ ThemeData themeMain = ThemeData(
     primaryColor: ColorMain.primary,
     fontFamily: 'Sora',
     textTheme: textTheme,
-    scaffoldBackgroundColor: ColorMain.fourth[100],
+    scaffoldBackgroundColor: const Color(0xFFF9F9F9),
     colorScheme: const ColorScheme(
       primary: ColorMain.primary,
       secondary: ColorMain.secondary,
