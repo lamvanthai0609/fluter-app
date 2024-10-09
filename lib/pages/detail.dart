@@ -70,6 +70,7 @@ class _DetailPage extends State<DetailPage> {
                   style: TextStyle(
                       fontWeight: FontWeight.w600, color: ColorMain.white),
                 ),
+                onPressed: () => Navigator.pushNamed(context, '/order'),
               )
             ],
           ),

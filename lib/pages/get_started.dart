@@ -43,7 +43,7 @@ class _GetStarted extends State<GetStarted> {
   Widget cardLayout(BuildContext context, bool isLoad) {
     return ClipRect(
       child: Transform.translate(
-        offset: const Offset(0, 450),
+        offset: const Offset(0, 0),
         child: Container(
           width: double.infinity,
           //height: remainingHeight,
@@ -53,7 +53,7 @@ class _GetStarted extends State<GetStarted> {
                 Colors.black.withOpacity(0),
                 Colors.black,
               ],
-              stops: [0, 0.1],
+              stops: [0.4, 0.7],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -69,38 +69,39 @@ class _GetStarted extends State<GetStarted> {
 
   Widget content(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         const Text(
           'Fall in Love with Coffee in Blissful Delight!',
           style: TextStyle(
             color: ColorMain.white,
             fontSize: 32,
-            fontFamily: 'Sora',
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center,
         ),
         Text(
           'Welcome to our cozy coffee corner, where every cup is a delightful for you.',
-          style: TextStyle(
-              fontSize: 14, fontFamily: 'Sora', color: ColorMain.third[200]),
+          style: TextStyle(fontSize: 14, color: ColorMain.third[200]),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 32),
-        SizedBox(
-          width: double.infinity,
+        Container(
+          constraints: const BoxConstraints(maxWidth: 360),
+          //width: double.infinity,
           child: Button(
+              padding: const EdgeInsets.all(24),
               label: 'Get Started',
               onPressed: () =>
                   Navigator.pushReplacementNamed(context, '/home')),
-        )
+        ),
       ],
     );
   }
 
   Widget contentLoader() {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SkeletonLoader(height: 20, width: double.infinity),
@@ -123,15 +124,15 @@ class _GetStarted extends State<GetStarted> {
           width: 120,
         ),
         const SizedBox(height: 32),
-        SizedBox(
-          width: double.infinity,
+        Container(
           child: Button(
+              padding: const EdgeInsets.all(24),
               child: const SkeletonLoader(
                 height: 10,
                 width: 120,
               ),
               onPressed: () => {}),
-        )
+        ),
       ],
     );
   }

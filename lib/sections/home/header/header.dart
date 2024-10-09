@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/libs/helper/screen_breakpoint.dart';
 import 'package:flutter_application_1/components/interactive/button.dart';
 import 'package:flutter_application_1/libs/helper/svg.dart';
 import 'package:flutter_application_1/libs/util/themes/color.dart';
@@ -8,10 +9,12 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobileScreen = ScreenBreakPoint(context: context).isMobileScreen();
+
     return Column(
       children: [
         Container(
-          height: 280,
+          height: isMobileScreen ? 320 : 460,
           width: double.infinity,
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
@@ -42,8 +45,8 @@ class Header extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(
-          height: 70,
+        SizedBox(
+          height: isMobileScreen ? 70 : 120,
         )
       ],
     );

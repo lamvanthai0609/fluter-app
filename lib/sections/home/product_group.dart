@@ -16,8 +16,10 @@ class _ProductGroup extends State<ProductGroup> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Center(
+        child: Container(
       padding: const EdgeInsets.all(24),
+      constraints: const BoxConstraints(maxWidth: 680),
       child: Column(
         children: [
           SizedBox(
@@ -42,6 +44,7 @@ class _ProductGroup extends State<ProductGroup> {
               ],
             ),
           ),
+          const SizedBox(height: 20),
           Wrap(
               alignment: WrapAlignment.center,
               spacing: 8,
@@ -51,7 +54,7 @@ class _ProductGroup extends State<ProductGroup> {
               }).toList()),
         ],
       ),
-    );
+    ));
   }
 
   Widget tab(String label, int index) {

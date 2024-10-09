@@ -13,9 +13,7 @@ class Screen extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       controller: tabController,
       children: [
-        const Center(
-          child: MainScreen(),
-        ),
+        const MainScreen(),
         AppSVG.heart(),
         AppSVG.bag(),
         AppSVG.notification()

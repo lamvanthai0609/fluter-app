@@ -132,4 +132,13 @@ class AppSVG {
       color: color ?? ColorMain.third,
     );
   }
+
+  static Widget wallet({double width = 20, double height = 20, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Wallet.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.primary,
+    );
+  }
 }
