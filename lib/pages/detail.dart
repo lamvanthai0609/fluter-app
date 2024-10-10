@@ -14,6 +14,31 @@ class DetailPage extends StatefulWidget {
 class _DetailPage extends State<DetailPage> {
   String activeSize = 's';
 
+  List<Map<String, dynamic>> sizes = [
+    {
+      'label': 'S',
+      'size': 's',
+    },
+    {
+      'label': 'M',
+      'size': 'm',
+    },
+    {
+      'label': 'L',
+      'size': 'l',
+    },
+  ];
+
+  void setSizeState(size) {
+    setState(() {
+      activeSize = size;
+    });
+  }
+
+  bool isActiveSize(size) {
+    return activeSize == size;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +62,15 @@ class _DetailPage extends State<DetailPage> {
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
         ),
-        child: BottomAppBar(
+        child: Container(
+          color: ColorMain.white,
           padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -214,76 +241,29 @@ class _DetailPage extends State<DetailPage> {
         const SizedBox(height: 8),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Button(
-              width: 96,
-              height: 41,
-              padding: const EdgeInsets.all(0),
-              variant: ButtonVariant.outline,
-              borderRadius: BorderRadius.circular(12),
-              borderColor:
-                  activeSize == 's' ? ColorMain.primary : ColorMain.fourth,
-              bgColor: activeSize == 's'
-                  ? ColorMain.primary[600]?.withOpacity(0.1)
-                  : ColorMain.white,
-              child: Text(
-                'S',
-                style: TextStyle(
-                    color: activeSize == 's'
+          children: sizes
+              .map((sizeItem) => Button(
+                    width: 96,
+                    height: 41,
+                    padding: const EdgeInsets.all(0),
+                    variant: ButtonVariant.outline,
+                    borderRadius: BorderRadius.circular(12),
+                    borderColor: isActiveSize(sizeItem['size'])
                         ? ColorMain.primary
-                        : ColorMain.third),
-              ),
-              onPressed: () => setState(() {
-                activeSize = 's';
-              }),
-            ),
-            Button(
-              width: 96,
-              height: 41,
-              padding: const EdgeInsets.all(0),
-              variant: ButtonVariant.outline,
-              borderRadius: BorderRadius.circular(12),
-              borderColor:
-                  activeSize == 'm' ? ColorMain.primary : ColorMain.fourth,
-              bgColor: activeSize == 'm'
-                  ? ColorMain.primary[600]?.withOpacity(0.1)
-                  : ColorMain.white,
-              child: Text(
-                'M',
-                style: TextStyle(
-                    color: activeSize == 'm'
-                        ? ColorMain.primary
-                        : ColorMain.third),
-              ),
-              onPressed: () => setState(() {
-                activeSize = 'm';
-              }),
-            ),
-            Button(
-              width: 96,
-              height: 41,
-              padding: const EdgeInsets.all(0),
-              variant: ButtonVariant.outline,
-              borderRadius: BorderRadius.circular(12),
-              borderColor:
-                  activeSize == 'l' ? ColorMain.primary : ColorMain.fourth,
-              bgColor: activeSize == 'l'
-                  ? ColorMain.primary[600]?.withOpacity(0.1)
-                  : ColorMain.white,
-              child: Text(
-                'L',
-                style: TextStyle(
-                    color: activeSize == 'l'
-                        ? ColorMain.primary
-                        : ColorMain.third),
-              ),
-              onPressed: () {
-                setState(() {
-                  activeSize = 'l';
-                });
-              },
-            )
-          ],
+                        : ColorMain.fourth,
+                    bgColor: isActiveSize(sizeItem['size'])
+                        ? ColorMain.primary[600]?.withOpacity(0.1)
+                        : ColorMain.white,
+                    child: Text(
+                      sizeItem['label'],
+                      style: TextStyle(
+                          color: isActiveSize(sizeItem['size'])
+                              ? ColorMain.primary
+                              : ColorMain.third),
+                    ),
+                    onPressed: () => setSizeState(sizeItem['size']),
+                  ))
+              .toList(),
         )
       ],
     );

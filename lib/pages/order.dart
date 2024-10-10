@@ -31,6 +31,21 @@ class _OrderPage extends State<OrderPage> with TickerProviderStateMixin {
     });
   }
 
+  List<Map<String, dynamic>> tabs = [
+    {
+      'label': 'Deliver',
+      'index': 0,
+    },
+    {
+      'label': 'Pickup',
+      'index': 1,
+    },
+  ];
+
+  bool isCheckFn(int index) {
+    return _tabController.index == index;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,52 +55,62 @@ class _OrderPage extends State<OrderPage> with TickerProviderStateMixin {
           padding: EdgeInsets.all(24),
           child: Column(
             children: [
-              Container(
-                child: TabBar(
-                  dividerHeight: 0,
-                  controller: _tabController,
-                  labelStyle: TextStyle(color: ColorMain.primary),
-                  onTap: (index) {
-                    _tabController.animateTo(index);
-                    setIndexState(index);
-                  },
-                  unselectedLabelColor:
-                      Colors.grey, // Color of the inactive tab labels
-                  // Color of the line under the active tab
-                  tabs: const [
-                    Tab(
-                      child: Button(
-                        child: Text(
-                          "Deliver",
-                          style: TextStyle(
-                              color: ColorMain.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
+              const SizedBox(height: 20),
+              header(context),
+              const SizedBox(height: 24),
+              Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      color: ColorMain.fourth[100],
+                      child: TabBar(
+                        dividerHeight: 0,
+                        controller: _tabController,
+                        indicator: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
                         ),
+                        padding: EdgeInsets.zero,
+                        isScrollable: false,
+                        labelPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                        tabs: tabs
+                            .map((tab) => Button(
+                                  onPressed: () => setIndexState(tab['index']),
+                                  padding: EdgeInsets.all(0),
+                                  borderRadius: BorderRadius.circular(8),
+                                  width: double.maxFinite,
+                                  bgColor: isCheckFn(tab['index'])
+                                      ? ColorMain.primary
+                                      : ColorMain.white.withOpacity(0),
+                                  child: Text(
+                                    tab['label'],
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: isCheckFn(tab['index'])
+                                          ? FontWeight.w600
+                                          : FontWeight.w400,
+                                      color: isCheckFn(tab['index'])
+                                          ? ColorMain.white
+                                          : ColorMain.third,
+                                    ),
+                                  ),
+                                ))
+                            .toList(),
                       ),
                     ),
-                    Tab(
-                      child: Button(
-                        child: Text(
-                          "Deliver",
-                          style: TextStyle(
-                              color: ColorMain.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: const [
+                        Center(child: Text('Nội dung Tab 1')),
+                        Center(child: Text('Nội dung Tab 2')),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              // Expanded(
-              //     child: TabBarView(
-              //   controller: _tabController,
-              //   children: const [
-              //     Center(child: Text("Car Tab Content")),
-              //     Center(child: Text("Transit Tab Content")),
-              //   ],
-              // ))
             ],
           ),
         ),
@@ -163,6 +188,24 @@ class _OrderPage extends State<OrderPage> with TickerProviderStateMixin {
           ),
         ),
       ),
+    );
+  }
+
+  Widget header(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        GestureDetector(
+            onTap: () => Navigator.pop(context), child: AppSVG.arrowLeft()),
+        const Text(
+          'Order',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(width: 0),
+      ],
     );
   }
 }
