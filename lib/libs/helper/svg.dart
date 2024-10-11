@@ -141,4 +141,40 @@ class AppSVG {
       color: color ?? ColorMain.primary,
     );
   }
+
+  static Widget edit({double width = 20, double height = 20, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Edit.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.third,
+    );
+  }
+
+  static Widget note({double width = 20, double height = 20, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Note.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.third,
+    );
+  }
+
+  static Widget add({double width = 16, double height = 16, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Add.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.third,
+    );
+  }
+
+  static Widget remove({double width = 16, double height = 16, Color? color}) {
+    return SvgPicture.asset(
+      '${_baseOutlineIconPath}Remove.svg',
+      width: width,
+      height: height,
+      color: color ?? ColorMain.third,
+    );
+  }
 }

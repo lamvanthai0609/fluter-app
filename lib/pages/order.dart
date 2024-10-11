@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/components/interactive/button.dart';
 import 'package:flutter_application_1/libs/helper/svg.dart';
 import 'package:flutter_application_1/libs/util/themes/color.dart';
+import 'package:flutter_application_1/screens/order/deliver.dart';
 
 class OrderPage extends StatefulWidget {
   @override
@@ -72,7 +73,7 @@ class _OrderPage extends State<OrderPage> with TickerProviderStateMixin {
                         ),
                         padding: EdgeInsets.zero,
                         isScrollable: false,
-                        labelPadding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                        labelPadding: EdgeInsets.all(4),
                         tabs: tabs
                             .map((tab) => Button(
                                   onPressed: () => setIndexState(tab['index']),
@@ -104,7 +105,7 @@ class _OrderPage extends State<OrderPage> with TickerProviderStateMixin {
                     child: TabBarView(
                       controller: _tabController,
                       children: const [
-                        Center(child: Text('Nội dung Tab 1')),
+                        DeliverScreen(),
                         Center(child: Text('Nội dung Tab 2')),
                       ],
                     ),
